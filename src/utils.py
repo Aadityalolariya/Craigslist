@@ -1,6 +1,5 @@
 import json
 
-
 def get_data_from_file():
     try:
         with open("./data.json", "r") as f:
@@ -13,6 +12,8 @@ def get_data_from_file():
 def parse_location(location):
     try:
         loc = location.split(" ")
+
+        # validating the format of location
         if (
             loc.__len__() != 2
             or not loc[0].startswith("[")
@@ -20,9 +21,12 @@ def parse_location(location):
             or not loc[1].endswith("]")
         ):
             raise ValueError()
+        
+        # creating the list having latitude and longitude
         latitide = float(loc[0].removeprefix("[").removesuffix(","))
         longitude = float(loc[1].removesuffix("]"))
         parsed_loc = [latitide, longitude]
+
         return parsed_loc
     except:
         raise ValueError()
