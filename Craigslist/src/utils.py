@@ -1,10 +1,26 @@
-import json
+import models
 
-def get_data_from_file():
+def get_data_from_database(reverse: bool = False, criteria: str = "price"):
     try:
-        with open("./Craigslist/data.json", "r") as f:
-            data = json.load(f)
-            return data
+        data = []
+        if reverse:
+            cursor = models.Craigslist.select().order_by(models.Craigslist.price.desc())
+        else:
+            cursor = models.Craigslist.select().order_by(models.Craigslist.price)
+
+        for item in cursor:
+            data.append(
+                {
+                    "id": item.id,
+                    "latitude": item.latitude,
+                    "longitude": item.longitude,
+                    "userId": item.userId,
+                    "description": item.description,
+                    "price": item.price,
+                    "status": item.status,
+                }
+            )
+        return data
     except:
         raise FileExistsError()
 
@@ -21,7 +37,7 @@ def parse_location(location):
             or not loc[1].endswith("]")
         ):
             raise ValueError()
-        
+
         # creating the list having latitude and longitude
         latitide = float(loc[0].removeprefix("[").removesuffix(","))
         longitude = float(loc[1].removesuffix("]"))
