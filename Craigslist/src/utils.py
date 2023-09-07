@@ -2,7 +2,7 @@ import json
 
 def get_data_from_file():
     try:
-        with open("./data.json", "r") as f:
+        with open("./Craigslist/data.json", "r") as f:
             data = json.load(f)
             return data
     except:
