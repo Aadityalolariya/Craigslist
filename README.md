@@ -33,7 +33,7 @@ So, to install all the dependencies, run the command
 ### To start the server, run main.py file by running the command
 `python Craigslist\src\main.py`
 
-The server will be started on [http://127.0.0.1:8080](http://127.0.0.1:8080).
+The server will be started on [http://127.0.0.1:10001](http://127.0.0.1:10001).
 
 Apply the above mentioned endpoints to test the API.
 

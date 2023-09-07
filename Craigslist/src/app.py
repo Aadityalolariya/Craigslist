@@ -1,7 +1,8 @@
 import cherrypy
-import utils
+# import utils
 import haversine
 from haversine import Unit
+import utils
 import models
 from peewee import DoesNotExist
 
@@ -186,4 +187,5 @@ class Craigslist(object):
         return {"no_of_items": item_list.__len__(), "result": item_list}
 
 
+cherrypy.config.update({'server.socket_port': 10001})
 cherrypy.quickstart(Craigslist(), "/")
