@@ -26,12 +26,12 @@ It is an API that provides the data of people have listed for sale on Craigslist
 
 ## Getting Started:-
 
-### Open the command prompt in Craigslist directory. Requirements are specified in requirements.txt file.
+### Open the command prompt. Requirements are specified in requirements.txt file.
 So, to install all the dependencies, run the command
 `pip install -r requirements.txt`
 
 ### To start the server, run main.py file by running the command
-`python src\main.py`
+`python Craigslist\src\main.py`
 
 The server will be started on [http://127.0.0.1:8080](http://127.0.0.1:8080).
 
