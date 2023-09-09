@@ -1,3 +1,5 @@
 cherrypy
 haversine
 peewee
+fastapi
+uvicorn

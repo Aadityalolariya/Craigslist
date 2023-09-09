@@ -30,8 +30,8 @@ It is an API that provides the data of people have listed for sale on Craigslist
 So, to install all the dependencies, run the command
 `pip install -r requirements.txt`
 
-### To start the server, run main.py file by running the command
-`python Craigslist\src\main.py`
+### To start the server, in repository itself, run app.py file by running the command
+`python Craigslist\src\app.py`
 
 The server will be started on [http://127.0.0.1:10001](http://127.0.0.1:10001).
 
@@ -43,7 +43,7 @@ Apply the above mentioned endpoints to test the API.
 
 The data is stored in data.json file.
 
-`main.py` file contains all the endpoints.
+`app.py` file contains all the endpoints.
 
 `utils.py` conatains a couple of utility functions used in data processing.
 
@@ -52,5 +52,5 @@ The data is stored in data.json file.
 ## Technologies:-
 
 `Python`
-`Cherrypy`
+`Fastapi`
 `Haversine`

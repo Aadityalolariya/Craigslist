@@ -1,5 +1,6 @@
 import models
 
+
 def get_data_from_database(reverse: bool = False, criteria: str = "price"):
     try:
         data = []
@@ -46,3 +47,15 @@ def parse_location(location):
         return parsed_loc
     except:
         raise ValueError()
+
+
+def modelObjToDict(item):
+    return {
+        "id": item.id,
+        "latitude": item.latitude,
+        "longitude": item.longitude,
+        "userId": item.userId,
+        "description": item.description,
+        "price": item.price,
+        "status": item.status,
+    }
