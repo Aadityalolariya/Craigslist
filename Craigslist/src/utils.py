@@ -1,12 +1,11 @@
 import models
 
+
 def get_data_from_database(reverse: bool = False, criteria: str = "price"):
     try:
         data = []
-        if reverse:
-            cursor = models.Craigslist.select().order_by(models.Craigslist.price.desc())
-        else:
-            cursor = models.Craigslist.select().order_by(models.Craigslist.price)
+        # ordering the items by the price (by default) in ascending order
+        cursor = models.Craigslist.select().order_by(models.Craigslist.price)
 
         for item in cursor:
             data.append(
@@ -20,9 +19,18 @@ def get_data_from_database(reverse: bool = False, criteria: str = "price"):
                     "status": item.status,
                 }
             )
-        return data
+
     except:
         raise FileExistsError()
+
+    # if reversed data is required or some other criteria for ordering is given
+    if reverse != False or criteria != "price":
+        try:
+            sorted_data = sorted(data, reverse=reverse, key=lambda x: x[criteria])
+            return sorted_data
+        except:
+            raise AttributeError()  # invalid criteria is provided
+    return data
 
 
 def parse_location(location):
@@ -46,3 +54,15 @@ def parse_location(location):
         return parsed_loc
     except:
         raise ValueError()
+
+
+def modelObjToDict(item):
+    return {
+        "id": item.id,
+        "latitude": item.latitude,
+        "longitude": item.longitude,
+        "userId": item.userId,
+        "description": item.description,
+        "price": item.price,
+        "status": item.status,
+    }
