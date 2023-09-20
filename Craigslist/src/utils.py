@@ -1,14 +1,12 @@
 import models
 
-
 def get_data_from_database(reverse: bool = False, criteria: str = "price"):
     try:
         data = []
-        if reverse:
-            cursor = models.Craigslist.select().order_by(models.Craigslist.price.desc())
-        else:
-            cursor = models.Craigslist.select().order_by(models.Craigslist.price)
+        # ordering the items by the price (by default) in ascending order
+        cursor = models.Craigslist.select().order_by(models.Craigslist.price)
 
+        # appending all the items in data list
         for item in cursor:
             data.append(
                 {
@@ -21,11 +19,21 @@ def get_data_from_database(reverse: bool = False, criteria: str = "price"):
                     "status": item.status,
                 }
             )
+
+        # if reversed data is required or some other criteria for ordering is given
+        if reverse != False or criteria != "price":
+            try:
+                sorted_data = sorted(data, reverse=reverse, key=lambda x: x[criteria])
+                return sorted_data
+            except:
+                raise AttributeError()  # invalid criteria is provided
+        
         return data
     except:
         raise FileExistsError()
 
 
+#  parse the location string into a list of latitiue and longitude
 def parse_location(location):
     try:
         loc = location.split(" ")
@@ -49,6 +57,7 @@ def parse_location(location):
         raise ValueError()
 
 
+#  to convert the Craigslist model object into dictionary
 def modelObjToDict(item):
     return {
         "id": item.id,
