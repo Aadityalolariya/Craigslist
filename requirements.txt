@@ -1,2 +1,2 @@
-cherrypy
-haversine
+cherrypy == 18.8.0
+haversine == 2.8.0
