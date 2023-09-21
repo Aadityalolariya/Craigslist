@@ -151,5 +151,4 @@ def getItemsInRadius(radius: float, latitude: float, longitude: float):
 
 
 if __name__ == "__main__":
-    # hosting the server on ip address of the pc rather than localhost so that the systems in same network can also access the server.
-    uvicorn.run("app:app", host="192.168.189.117", port=10001, reload=True)
+    uvicorn.run("app:app", host="127.0.0.1", port=10001, reload=True)
