@@ -150,11 +150,8 @@ class Craigslist(object):
                 item_list.append(item)
         return {"no_of_items": item_list.__len__(), "result": item_list}
 
-# cherrypy.config.update({"server.socket_port": 10001})     #  to run the server at local host
 
-# hosting the server at ip address of the pc so that other systems in same network can also fire request using this ip address
 cherrypy.config.update({
-    'server.socket_host' : '192.168.189.117',
     'server.socket_port' : 10001,
 })
 
